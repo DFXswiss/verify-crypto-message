@@ -1,16 +1,53 @@
 import { useState } from "react";
+import { ethers } from "ethers";
 import "./App.css";
 
 function App() {
-  const blockchains = ["Ethereum", "Bitcoin", "Polygon"];
-  const [selectedBlockchain, setSelectedBlockchain] = useState<string | null>(null);
+  const { verifyMessage } = ethers;
+
+  const blockchains = [
+    "Ethereum",
+    "Polygon",
+    "Aribtrum",
+    "Binance Smart Chain",
+    "Optimism",
+  ];
+  
+  const [selectedBlockchain, setSelectedBlockchain] = useState<string | null>(
+    null
+  );
   const [message, setMessage] = useState("");
   const [signature, setSignature] = useState("");
   const [publicKey, setPublicKey] = useState("");
-  const [verificationResult, setVerificationResult] = useState<string | null>(null);
+  const [error, setError] = useState<string>();
+  const [verificationResult, setVerificationResult] = useState<boolean>();
 
   const handleVerify = async () => {
-    // TODO: Implement the verification logic here
+    if (!selectedBlockchain || !message || !signature || !publicKey) {
+      setError(
+        "Please fill out all fields and select a blockchain."
+      );
+      return;
+    }
+
+    try {
+      let result: string = "";
+      switch (selectedBlockchain) {
+        case "Ethereum":
+        case "Polygon":
+        case "Aribtrum":
+        case "Binance Smart Chain":
+        case "Optimism":
+          result = verifyMessage(message, signature);
+          break;
+        default:
+          setError("Invalid blockchain selected");
+      }
+
+      setVerificationResult(result.toLowerCase() === publicKey.toLowerCase());
+    } catch (error: any) {
+      setVerificationResult(error.message);
+    }
   };
 
   return (
@@ -56,6 +93,10 @@ function App() {
           />
         </div>
 
+        {error && (
+          <div className="bg-red-200 text-red-800 p-2 rounded-md">{error}</div>
+        )}
+
         <button
           className="bg-slate-700 text-white py-2 px-4 rounded-md"
           onClick={handleVerify}
@@ -63,15 +104,15 @@ function App() {
           Verify
         </button>
 
-        {verificationResult && (
+        {verificationResult !== undefined && (
           <div
             className={`mt-4 p-2 rounded-md ${
-              verificationResult.includes("valid")
+              verificationResult
                 ? "bg-green-200 text-green-800"
                 : "bg-red-200 text-red-800"
             }`}
           >
-            {verificationResult}
+            {verificationResult ? "Signature is valid" : "Signature is invalid"}
           </div>
         )}
       </div>
