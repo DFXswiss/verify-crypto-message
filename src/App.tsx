@@ -1,34 +1,14 @@
 import { useState } from "react";
-import { ethers } from "ethers";
 import "./App.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-export enum Blockchain {
-  BITCOIN = "Bitcoin",
-  LIGHTNING = "Lightning",
-  MONERO = "Monero",
-  ETHEREUM = "Ethereum",
-  BINANCE_SMART_CHAIN = "Binance Smart Chain",
-  OPTIMISM = "Optimism",
-  ARBITRUM = "Arbitrum",
-  POLYGON = "Polygon",
-  BASE = "Base",
-  HAQQ = "Haqq",
-  LIQUID = "Liquid",
-  ARWEAVE = "Arweave",
-  CARDANO = "Cardano",
-  DEFICHAIN = "DeFiChain",
-}
 
 type FormData = {
   address: string;
   message: string;
   signature: string;
-  blockchain: Blockchain;
 };
 
 function App() {
-  const { verifyMessage } = ethers;
   const [verificationResult, setVerificationResult] = useState<boolean>();
   const [error, setError] = useState<string | undefined>();
 
@@ -36,18 +16,12 @@ function App() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setValue,
     trigger,
     setFocus,
     watch,
   } = useForm<FormData>({
     mode: "onChange",
-    defaultValues: {
-      blockchain: Blockchain.ETHEREUM,
-    },
   });
-
-  const selectedBlockchain = watch("blockchain");
 
   watch(() => {
     setError(undefined);
@@ -57,29 +31,20 @@ function App() {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     setError(undefined);
     setVerificationResult(undefined);
-
-    const { address, message, signature, blockchain } = data;
-
-    try {
-      let result: string = "";
-
-      switch (blockchain) {
-        case Blockchain.ETHEREUM:
-        case Blockchain.POLYGON:
-        case Blockchain.ARBITRUM:
-        case Blockchain.BINANCE_SMART_CHAIN:
-        case Blockchain.OPTIMISM:
-          result = verifyMessage(message, signature);
-          break;
-        default:
-          setError("Invalid blockchain selected");
-      }
-
-      setVerificationResult(result.toLowerCase() === address.toLowerCase());
-    } catch (error: any) {
-      setError(error.code);
-    }
+    verifySignatureApi({ ...data });
   };
+
+  function verifySignatureApi({ message, signature, address }: FormData) {
+    const url = `http://localhost:3000/v1/auth/verifySignature?address=${address}&message=${message}&signature=${signature}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setVerificationResult(data.isValid);
+      })
+      .catch((error) => {
+        setError(error.toString());
+      });
+  }
 
   const handleValidationAndFocus = async () => {
     const isValid = await trigger();
@@ -109,23 +74,6 @@ function App() {
       </div>
       <form>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-2 justify-center pb-4">
-            {Object.values(Blockchain).map((blockchain) => (
-              <button
-                type="button"
-                key={blockchain}
-                className={`${
-                  selectedBlockchain === blockchain
-                    ? "bg-dfxRed-150 text-white"
-                    : "bg-slate-400/10 hover:bg-slate-400/20 text-slate-700 dark:text-slate-300"
-                } font-medium text-base rounded-full py-1 px-3 focus:outline-none`}
-                onClick={() => setValue("blockchain", blockchain)}
-              >
-                {blockchain}
-              </button>
-            ))}
-          </div>
-
           <div className="relative">
             <input
               type="text"
