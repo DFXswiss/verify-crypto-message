@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useSearchParams } from 'react-router-dom';
 
 type FormData = {
   address: string;
@@ -8,9 +9,16 @@ type FormData = {
   signature: string;
 };
 
+// http://localhost:5173/?address=0xee0b53ac9578cbc6e0cee0ac6e18cfb7118b5cb3&message=Verifying%20I%27m%20chaskin.eth%20reaching%20out%20to%20Juani&signature=0x8af6bfa7a4cb8f6195751b714940dea4b9d72a2e03508bb1f61c47df4ff58e3f66b589d80344250b93ce49133bdeac813b72b41c93e78407cc96f0239b740b2f1c
 function App() {
   const [verificationResult, setVerificationResult] = useState<boolean>();
   const [error, setError] = useState<string | undefined>();
+
+  const [urlParams, setUrlParams] = useSearchParams();
+
+  useEffect(() => {
+    setUrlParams(new URLSearchParams());
+  }, [])
 
   const {
     register,
@@ -21,6 +29,11 @@ function App() {
     watch,
   } = useForm<FormData>({
     mode: "onChange",
+    defaultValues: {
+      address: urlParams.get("address") || "",
+      message: urlParams.get("message") || "",
+      signature: urlParams.get("signature") || "",
+    },
   });
 
   watch(() => {
