@@ -46,7 +46,7 @@ function App() {
     setVerificationResult(undefined);
 
     const { address, message, signature } = data;
-    const encodedMessage = encodeURIComponent(message.trim());
+    const encodedMessage = encodeURIComponent(message);
     const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${address}&message=${encodedMessage}&signature=${signature}`;
     try {
       const response = await fetch(url);
