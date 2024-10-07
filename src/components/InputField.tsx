@@ -39,13 +39,10 @@ export function InputField({
           autoComplete="off"
         />
       )}
-      <label
-        htmlFor={id}
-        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-dfxRed-150 peer-focus:dark:text-dfxRed-150 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-6 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-      >
-        {label}
-        <div className="absolute h-0.5 -z-10 w-11/12 top-[7px] left-1 bg-white dark:bg-[#242424] transform peer-focus:visible peer-focus:opacity-100 peer-placeholder-shown:opacity-0" />
-      </label>
+      <div className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-dfxRed-150 peer-focus:dark:text-dfxRed-150 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-6 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+        <label htmlFor={id}>{label}</label>
+        <div className="absolute h-[3px] -z-10 w-11/12 top-[7px] left-1 bg-white dark:bg-black rounded-xs"/>
+      </div>
       {errors[id] && (
         <p className="text-left pl-2.5 pt-1 text-dfxRed-150 text-sm">
           {errors[id].message}

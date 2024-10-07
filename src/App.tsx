@@ -53,8 +53,8 @@ function App() {
     const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${address}&message=${encodedMessage}&signature=${signature}`;
     try {
       const response = await fetch(url);
-      const data_2 = await response.json();
-      setVerificationResult(data_2.isValid);
+      const responseJson = await response.json();
+      setVerificationResult(responseJson.isValid);
     } catch (error: any) {
       setError(error.toString());
     }
