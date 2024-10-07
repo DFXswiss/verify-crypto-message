@@ -49,7 +49,7 @@ function App() {
 
   function verifySignatureApi({ message, signature, address }: FormData) {
     const encodedMessage = encodeURIComponent(message.trim());
-    const url = `http://localhost:3000/v1/auth/verifySignature?address=${address}&message=${encodedMessage}&signature=${signature}`;
+    const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${address}&message=${encodedMessage}&signature=${signature}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
