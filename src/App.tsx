@@ -96,6 +96,7 @@ function App() {
                 errors.address ? "border-dfxRed-150" : "border-gray-300"
               } appearance-none dark:text-white dark:border-gray-600 dark:focus:border-dfxRed-150 focus:outline-none focus:ring-0 focus:border-dfxRed-150 peer`}
               placeholder=" "
+              autoComplete="off"
             />
             <div className="absolute h-0.5 w-12 top-0 left-1.5 bg-white dark:bg-[#242424] transform peer-focus:visible peer-focus:opacity-100 peer-placeholder-shown:opacity-0" />
             <label
@@ -119,6 +120,7 @@ function App() {
                 errors.message ? "border-dfxRed-150" : "border-gray-300"
               } appearance-none dark:text-white dark:border-gray-600 dark:focus:border-dfxRed-150 focus:outline-none focus:ring-0 focus:border-dfxRed-150 peer`}
               placeholder=" "
+              autoComplete="off"
             />
             <div className="absolute h-0.5 w-[52px] top-0 left-1.5 bg-white dark:bg-[#242424] transform peer-focus:visible peer-focus:opacity-100 peer-placeholder-shown:opacity-0" />
             <label
@@ -143,6 +145,7 @@ function App() {
                 errors.signature ? "border-dfxRed-150" : "border-gray-300"
               } appearance-none dark:text-white dark:border-gray-600 dark:focus:border-dfxRed-150 focus:outline-none focus:ring-0 focus:border-dfxRed-150 peer`}
               placeholder=" "
+              autoComplete="off"
             />
             <div className="absolute h-0.5 w-14 top-0 left-1.5 bg-white dark:bg-[#242424] transform peer-focus:visible peer-focus:opacity-100 peer-placeholder-shown:opacity-0" />
             <label
