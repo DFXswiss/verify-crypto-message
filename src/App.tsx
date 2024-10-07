@@ -78,7 +78,7 @@ function App() {
     <div className="flex flex-col justify-start gap-8 p-2 pt-6 max-w-screen-sm">
       <div>
         <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-200 tracking-tight">
-          Verify signed crypto messages
+          Verify a signed crypto message
         </div>
         <p className="mt-4 text-lg text-slate-700 dark:text-slate-400 leading-snug">
           Enter the address, message, and signature to verify the signature.
