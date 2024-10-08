@@ -49,8 +49,11 @@ function App() {
     setVerificationResult(undefined);
 
     const { address, message, signature } = data;
-    const encodedMessage = encodeURIComponent(message);
-    const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${address}&message=${encodedMessage}&signature=${signature}`;
+    const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${encodeURIComponent(
+      address
+    )}&message=${encodeURIComponent(message)}&signature=${encodeURIComponent(
+      signature
+    )}`;
     try {
       const response = await fetch(url);
       const responseJson = await response.json();
@@ -114,7 +117,7 @@ function App() {
               {error}
             </div>
           )}
-          
+
           <Button
             label={isLoading ? "VERIFYING..." : "VERIFY"}
             onClick={handleValidationAndFocus}
