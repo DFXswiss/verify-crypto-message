@@ -139,6 +139,39 @@ function App() {
                 : "Signature is invalid"}
             </div>
           )}
+
+          <div className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            This website is operated and maintained as a non-profit project. The
+            model was{" "}
+            <a
+              href="https://www.verifybitcoinmessage.com"
+              target="_blank"
+              rel="noreferrer"
+              className="underline text-blue-500 hover:text-blue-600"
+            >
+              https://www.verifybitcoinmessage.com
+            </a>
+            . However, this website can check not only Bitcoin signatures but
+            also Ethereum, Monero and other blockchain signatures. If you have
+            any questions or suggestions, please contact{" "}
+            <a
+              href="mailto: verifycryptomessage@gmail.com"
+              className="underline text-blue-500 hover:text-blue-600"
+            >
+              verifycryptomessage@gmail.com
+            </a>
+            .
+          </div>
+
+          <div className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            Example Usage:{" "}
+            <a
+              href="https://verifycryptomessage.com/?address=1JWYmwtrqu2ttRDgtriFqivofWixCqRPRa&message=Hello%2C%20World!&signature=IHLrykoT8n7gF8M%2FC9pKVtRkxX446wx01kTcSqNmMBOOKFublbr5fj1moM0BwNrqoAdp7RMLr%2FBE%2BBM84jGNjOM%3D"
+              className="underline text-blue-500 hover:text-blue-600 break-all"
+            >
+              https://verifycryptomessage.com/?address=1JWYm...qRPRa&message=Hello%2C%20World!&signature=IHLr...M%3D
+            </a>
+          </div>
         </div>
       </form>
     </div>
