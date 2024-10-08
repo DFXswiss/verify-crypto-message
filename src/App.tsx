@@ -110,7 +110,7 @@ function App() {
           />
 
           {error && (
-            <div className="bg-red-200 text-dfxRed-150 p-2 rounded-md">
+            <div className="bg-red-200 text-red-500 p-2 rounded-md">
               {error}
             </div>
           )}
@@ -125,10 +125,10 @@ function App() {
 
           {verificationResult !== undefined && (
             <div
-              className={`mt-2 p-2 rounded-md ${
+              className={`mt-2 p-2 rounded-md font-medium ${
                 verificationResult
                   ? "bg-green-200 text-green-800"
-                  : "bg-red-200 text-dfxRed-150"
+                  : "bg-red-200 text-red-500"
               }`}
             >
               {verificationResult
