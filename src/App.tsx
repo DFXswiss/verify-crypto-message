@@ -169,7 +169,7 @@ function App() {
               href="https://verifycryptomessage.com/?address=1JWYmwtrqu2ttRDgtriFqivofWixCqRPRa&message=Hello%2C%20World!&signature=IHLrykoT8n7gF8M%2FC9pKVtRkxX446wx01kTcSqNmMBOOKFublbr5fj1moM0BwNrqoAdp7RMLr%2FBE%2BBM84jGNjOM%3D"
               className="underline text-blue-500 hover:text-blue-600 break-all"
             >
-              https://verifycryptomessage.com/?address=1JWYm...qRPRa&message=Hello%2C%20World!&signature=IHLr...M%3D
+              https://verifycryptomessage.com/?address=1JWY...RPRa&message=Hello%2C%20World!&signature=IHLr...M%3D
             </a>
           </div>
         </div>
