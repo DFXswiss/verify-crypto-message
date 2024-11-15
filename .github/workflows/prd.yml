@@ -2,7 +2,7 @@ name: Deploy to All-Inkl
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Build and deploy to All-Inkl (Development)
+    name: Build and deploy to All-Inkl (Production)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,4 +36,4 @@ jobs:
           username: ${{ secrets.PRD_USER }}
           password: ${{ secrets.PRD_PASSWORD }}
           local-dir: './dist/'
-          server-dir: '/dev.verifycryptomessage.com/'
+          server-dir: '/verifycryptomessage.com/'
