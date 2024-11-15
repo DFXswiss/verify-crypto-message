@@ -32,8 +32,8 @@ jobs:
       - name: Deploy to All-Inkl
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.PRD_HOST }}
-          username: ${{ secrets.PRD_USER }}
-          password: ${{ secrets.PRD_PASSWORD }}
+          server: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          password: ${{ secrets.DEV_PASSWORD }}
           local-dir: './dist/'
           server-dir: '/dev.verifycryptomessage.com/'
