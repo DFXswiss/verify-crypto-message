@@ -28,6 +28,8 @@ jobs:
       - name: Build code
         run: |
           npm run build
+        env:
+          VITE_API_URL: https://api.dfx.swiss
 
       - name: Deploy to All-Inkl
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

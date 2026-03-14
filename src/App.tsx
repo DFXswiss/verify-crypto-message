@@ -49,7 +49,7 @@ function App() {
     setVerificationResult(undefined);
 
     const { address, message, signature } = data;
-    const url = `https://dev.api.dfx.swiss/v1/auth/verifySignature?address=${encodeURIComponent(
+    const url = `${import.meta.env.VITE_API_URL}/v1/auth/verifySignature?address=${encodeURIComponent(
       address
     )}&message=${encodeURIComponent(message)}&signature=${encodeURIComponent(
       signature
